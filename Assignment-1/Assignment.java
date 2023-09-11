@@ -19,6 +19,8 @@ public class Assignment
         getAssignmentName();
         studentMarks = new int[30];
         getAssignmentMarks();
+        findHighestMark(studentMarks);
+        findLowestMark(studentMarks);
         
     }
 
@@ -68,6 +70,30 @@ public class Assignment
             System.out.println("Student " + (i + 1) + ": " + studentMarks[i]);
         }
         
+    }
+    
+    // Algorithm to find the highest mark
+    public static int findHighestMark(int[] marks) {
+        int highest = marks[0];
+        for (int mark : marks) {
+            if (mark > highest) {
+                highest = mark;
+            }
+        }
+        System.out.println("Highest Mark: " + highest);
+        return highest;
+    }
+
+    // Algorithm to find the lowest mark
+    public static int findLowestMark(int[] marks) {
+        int lowest = marks[0];
+        for (int mark : marks) {
+            if (mark < lowest) {
+                lowest = mark;
+            }
+        }
+        System.out.println("Lowest Mark: " + lowest);
+        return lowest;
     }
     
     
