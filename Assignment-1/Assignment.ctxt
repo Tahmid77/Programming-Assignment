@@ -15,4 +15,6 @@ comment5.params=marks
 comment5.target=int\ findLowestMark(int[])
 comment6.params=marks
 comment6.target=double\ calculateMean(int[])
-numComments=7
+comment7.params=marks\ mean
+comment7.target=double\ calculateStandardDeviation(int[],\ double)
+numComments=8

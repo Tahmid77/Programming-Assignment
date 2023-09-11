@@ -23,6 +23,7 @@ public class Assignment
         findHighestMark(studentMarks);
         findLowestMark(studentMarks);
         mean = calculateMean(studentMarks);
+        calculateStandardDeviation(studentMarks, mean);
         
     }
 
@@ -106,6 +107,18 @@ public class Assignment
         }
         System.out.println("Mean: " + (double) sum / marks.length);
         return (double) sum / marks.length;
+    }
+    
+    // Algorithm to calculate the standard deviation of marks
+    public static double calculateStandardDeviation(int[] marks, double mean) {
+        double sumSquaredDifferences = 0;
+        for (int mark : marks) {
+            double difference = mark - mean;
+            sumSquaredDifferences += difference * difference;
+        }
+        double variance = sumSquaredDifferences / marks.length;
+        System.out.println("Standard Deviation: " + Math.sqrt(variance));
+        return Math.sqrt(variance);
     }
     
     
