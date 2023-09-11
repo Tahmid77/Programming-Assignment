@@ -13,4 +13,6 @@ comment4.params=marks
 comment4.target=int\ findHighestMark(int[])
 comment5.params=marks
 comment5.target=int\ findLowestMark(int[])
-numComments=6
+comment6.params=marks
+comment6.target=double\ calculateMean(int[])
+numComments=7

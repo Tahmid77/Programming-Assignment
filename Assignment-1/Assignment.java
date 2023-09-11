@@ -9,6 +9,7 @@ public class Assignment
 {
     // instance variables - replace the example below with your own
     private int[] studentMarks;
+    private double mean;
 
     /**
      * Constructor for objects of class Assignment
@@ -21,6 +22,7 @@ public class Assignment
         getAssignmentMarks();
         findHighestMark(studentMarks);
         findLowestMark(studentMarks);
+        mean = calculateMean(studentMarks);
         
     }
 
@@ -94,6 +96,16 @@ public class Assignment
         }
         System.out.println("Lowest Mark: " + lowest);
         return lowest;
+    }
+    
+    // Algorithm to calculate the mean of marks
+    public static double calculateMean(int[] marks) {
+        int sum = 0;
+        for (int mark : marks) {
+            sum += mark;
+        }
+        System.out.println("Mean: " + (double) sum / marks.length);
+        return (double) sum / marks.length;
     }
     
     
