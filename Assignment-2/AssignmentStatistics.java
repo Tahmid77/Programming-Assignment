@@ -1,5 +1,11 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
 class Student {
     private String firstName;
@@ -42,8 +48,9 @@ class Student {
 }
 
 
+
 public class AssignmentStatistics {
-    
+
     private static List<Student> students = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -85,7 +92,7 @@ public class AssignmentStatistics {
             }
         }
     }
-    
+
     private static void loadStudentsFromCSV(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -123,8 +130,7 @@ public class AssignmentStatistics {
             System.err.println("Error reading the CSV file: " + e.getMessage());
         }
     }
-    
-    
+
     private static void printStudentsDetails() {
         for (Student student : students) {
             System.out.println("Name: " + student.getFullName());
@@ -134,18 +140,7 @@ public class AssignmentStatistics {
             System.out.println();
         }
     }
-    
-    private static void printStudentsBelowThreshold(double threshold) {
-        System.out.println("Students with total marks below " + threshold + ":");
-        for (Student student : students) {
-            if (student.getTotalMark() < threshold) {
-                System.out.println("Name: " + student.getFullName());
-                System.out.println("Student ID: " + student.getStudentID());
-                System.out.println("Total Mark: " + student.getTotalMark());
-                System.out.println();
-            }
-        }
-    }
+
     private static void printStudentsBelowThreshold(double threshold) {
         System.out.println("Students with total marks below " + threshold + ":");
         for (Student student : students) {
@@ -192,8 +187,4 @@ public class AssignmentStatistics {
         System.out.println();
     }
 }
-    
-}
-
-    }
 }
