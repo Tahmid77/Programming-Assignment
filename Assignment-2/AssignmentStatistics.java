@@ -146,6 +146,52 @@ public class AssignmentStatistics {
             }
         }
     }
+    private static void printStudentsBelowThreshold(double threshold) {
+        System.out.println("Students with total marks below " + threshold + ":");
+        for (Student student : students) {
+            if (student.getTotalMark() < threshold) {
+                System.out.println("Name: " + student.getFullName());
+                System.out.println("Student ID: " + student.getStudentID());
+                System.out.println("Total Mark: " + student.getTotalMark());
+                System.out.println();
+            }
+        }
+    }
+
+    private static void printTop5Students(boolean highest) {
+    String order = highest ? "highest" : "lowest";
+    int count = Math.min(5, students.size());
+
+    Student[] topStudents = new Student[count];
+
+    for (int i = 0; i < count; i++) {
+        topStudents[i] = students.get(i);
+    }
+
+    for (int i = count; i < students.size(); i++) {
+        Student student = students.get(i);
+        for (int j = 0; j < count; j++) {
+            if ((highest && student.getTotalMark() > topStudents[j].getTotalMark()) ||
+                (!highest && student.getTotalMark() < topStudents[j].getTotalMark())) {
+                // Shift students down the list
+                for (int k = count - 1; k > j; k--) {
+                    topStudents[k] = topStudents[k - 1];
+                }
+                topStudents[j] = student;
+                break;
+            }
+        }
+    }
+
+    System.out.println("Top 5 students with " + order + " total marks:");
+    for (int i = 0; i < count; i++) {
+        Student student = topStudents[i];
+        System.out.println("Name: " + student.getFullName());
+        System.out.println("Student ID: " + student.getStudentID());
+        System.out.println("Total Mark: " + student.getTotalMark());
+        System.out.println();
+    }
+}
     
 }
 
