@@ -125,7 +125,15 @@ public class AssignmentStatistics {
     }
     
     
-    
+    private static void printStudentsDetails() {
+        for (Student student : students) {
+            System.out.println("Name: " + student.getFullName());
+            System.out.println("Student ID: " + student.getStudentID());
+            System.out.println("Marks: " + student.getMarks()[0] + ", " + student.getMarks()[1] + ", " + student.getMarks()[2]);
+            System.out.println("Total Mark: " + student.getTotalMark());
+            System.out.println();
+        }
+    }
     
 }
 
