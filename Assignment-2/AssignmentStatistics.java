@@ -2,10 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Scanner;
+import java.util.List;
 
 class Student {
     private String firstName;
@@ -46,8 +44,6 @@ class Student {
         return total;
     }
 }
-
-
 
 public class AssignmentStatistics {
 
@@ -113,6 +109,7 @@ public class AssignmentStatistics {
                             marks[i - 3] = Double.parseDouble(parts[i].trim());
                         } catch (NumberFormatException e) {
                             validData = false;
+                            // Print error message for invalid mark format
                             System.err.println("Invalid mark format for line: " + line);
                             break;
                         }
@@ -123,16 +120,19 @@ public class AssignmentStatistics {
                     }
                 } else {
                     // Handle incorrect CSV format
+                    // Print error message for invalid CSV format
                     System.err.println("Invalid CSV format for line: " + line);
                 }
             }
         } catch (IOException e) {
+            // Print error message for file reading error
             System.err.println("Error reading the CSV file: " + e.getMessage());
         }
     }
 
     private static void printStudentsDetails() {
         for (Student student : students) {
+            // Print student details
             System.out.println("Name: " + student.getFullName());
             System.out.println("Student ID: " + student.getStudentID());
             System.out.println("Marks: " + student.getMarks()[0] + ", " + student.getMarks()[1] + ", " + student.getMarks()[2]);
@@ -145,6 +145,7 @@ public class AssignmentStatistics {
         System.out.println("Students with total marks below " + threshold + ":");
         for (Student student : students) {
             if (student.getTotalMark() < threshold) {
+                // Print student details
                 System.out.println("Name: " + student.getFullName());
                 System.out.println("Student ID: " + student.getStudentID());
                 System.out.println("Total Mark: " + student.getTotalMark());
@@ -154,37 +155,38 @@ public class AssignmentStatistics {
     }
 
     private static void printTop5Students(boolean highest) {
-    String order = highest ? "highest" : "lowest";
-    int count = Math.min(5, students.size());
+        String order = highest ? "highest" : "lowest";
+        int count = Math.min(5, students.size());
 
-    Student[] topStudents = new Student[count];
+        Student[] topStudents = new Student[count];
 
-    for (int i = 0; i < count; i++) {
-        topStudents[i] = students.get(i);
-    }
+        for (int i = 0; i < count; i++) {
+            topStudents[i] = students.get(i);
+        }
 
-    for (int i = count; i < students.size(); i++) {
-        Student student = students.get(i);
-        for (int j = 0; j < count; j++) {
-            if ((highest && student.getTotalMark() > topStudents[j].getTotalMark()) ||
-                (!highest && student.getTotalMark() < topStudents[j].getTotalMark())) {
-                // Shift students down the list
-                for (int k = count - 1; k > j; k--) {
-                    topStudents[k] = topStudents[k - 1];
+        for (int i = count; i < students.size(); i++) {
+            Student student = students.get(i);
+            for (int j = 0; j < count; j++) {
+                if ((highest && student.getTotalMark() > topStudents[j].getTotalMark()) ||
+                        (!highest && student.getTotalMark() < topStudents[j].getTotalMark())) {
+                    // Shift students down the list
+                    for (int k = count - 1; k > j; k--) {
+                        topStudents[k] = topStudents[k - 1];
+                    }
+                    topStudents[j] = student;
+                    break;
                 }
-                topStudents[j] = student;
-                break;
             }
         }
-    }
 
-    System.out.println("Top 5 students with " + order + " total marks:");
-    for (int i = 0; i < count; i++) {
-        Student student = topStudents[i];
-        System.out.println("Name: " + student.getFullName());
-        System.out.println("Student ID: " + student.getStudentID());
-        System.out.println("Total Mark: " + student.getTotalMark());
-        System.out.println();
+        System.out.println("Top 5 students with " + order + " total marks:");
+        for (int i = 0; i < count; i++) {
+            Student student = topStudents[i];
+            // Print student details
+            System.out.println("Name: " + student.getFullName());
+            System.out.println("Student ID: " + student.getStudentID());
+            System.out.println("Total Mark: " + student.getTotalMark());
+            System.out.println();
+        }
     }
-}
 }
