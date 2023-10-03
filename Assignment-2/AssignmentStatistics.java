@@ -135,6 +135,18 @@ public class AssignmentStatistics {
         }
     }
     
+    private static void printStudentsBelowThreshold(double threshold) {
+        System.out.println("Students with total marks below " + threshold + ":");
+        for (Student student : students) {
+            if (student.getTotalMark() < threshold) {
+                System.out.println("Name: " + student.getFullName());
+                System.out.println("Student ID: " + student.getStudentID());
+                System.out.println("Total Mark: " + student.getTotalMark());
+                System.out.println();
+            }
+        }
+    }
+    
 }
 
     }
